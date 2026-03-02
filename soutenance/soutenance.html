@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -418,7 +417,6 @@
 <body>
     <div class="reveal">
         <div class="slides">
-            <!-- ===================== SLIDE TITRE ===================== -->
             <section>
                 <div style="text-align: center;">
                     <div class="university-logo">
@@ -450,7 +448,6 @@
                 </aside>
             </section>
 
-            <!-- ===================== PLAN ===================== -->
             <section>
                 <div class="icon-header">
                     <i class="fas fa-list"></i>
@@ -473,7 +470,6 @@
                 </aside>
             </section>
 
-            <!-- ===================== SECTION 1 : INTRO ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -513,7 +509,6 @@
                 </section>
             </section>
 
-            <!-- ===================== SECTION 2 : PRINCIPE ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -563,7 +558,6 @@
                 </section>
             </section>
 
-            <!-- ===================== SECTION 3 : ROLE ENR ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -606,9 +600,7 @@
                 </section>
             </section>
 
-            <!-- ===================== SECTION 4 : ÉTUDE THÉORIQUE (MA PARTIE) ===================== -->
             <section>
-                <!-- 4.1 Données -->
                 <section>
                     <div class="icon-header">
                         <i class="fas fa-database"></i>
@@ -646,7 +638,6 @@
                     </aside>
                 </section>
 
-                <!-- 4.2 Plage hydraulique -->
                 <section>
                     <div class="icon-header">
                         <i class="fas fa-tachometer-alt"></i>
@@ -675,7 +666,6 @@
                     </aside>
                 </section>
 
-                <!-- 4.3 Performances énergétiques -->
                 <section>
                     <div class="icon-header">
                         <i class="fas fa-chart-pie"></i>
@@ -706,7 +696,6 @@
                     </aside>
                 </section>
 
-                <!-- 4.4 Analyse énergétique -->
                 <section>
                     <div class="icon-header">
                         <i class="fas fa-exchange-alt"></i>
@@ -737,7 +726,6 @@
                     </aside>
                 </section>
 
-                <!-- 4.5 Temps théoriques -->
                 <section>
                     <div class="icon-header">
                         <i class="fas fa-clock"></i>
@@ -778,9 +766,7 @@
                     </aside>
                 </section>
             </section>
-            <!-- ===================== FIN SECTION 4 ===================== -->
 
-            <!-- ===================== SECTION 5 : HTB ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -805,9 +791,7 @@
                         </div>
                     </div>
                     <aside class="notes">
-                        Passons à la deuxième partie de notre étude : comment acheminer cette puissance ? 
-                        L'énoncé stipule un raccordement souterrain de 20 km en 130/225 kV. C'est un câble unipolaire avec une âme en aluminium de 400 mm² et un isolant en polyéthylène réticulé (XLPE). 
-                        Notez la présence de la gaine de plomb (3,7 mm) qui joue un rôle capital pour la sécurité et le champ électrique, et dont nous reparlerons plus tard.
+                        Passons à la partie électrique : l'acheminement de la puissance. Notre centrale est reliée au réseau via une liaison souterraine de 20 km. C'est un câble unipolaire avec une âme en aluminium de 400 mm², isolé au XLPE. Le point technique à retenir sur cette coupe, c'est la présence de l'écran métallique. Il confine le champ électrique et assure la sécurité, une contrainte majeure que l'on abordera plus loin.
                     </aside>
                 </section>
                 <section>
@@ -825,14 +809,11 @@
                     </table>
                     <p>Impédance caractéristique : \(Z_c = \sqrt{\frac{R+j\omega L}{G+j\omega C}} \approx 155\ \Omega\)</p>
                     <aside class="notes">
-                        Pour modéliser ce câble, nous avons calculé ses paramètres linéiques à sa température de fonctionnement de 70°C. 
-                        Nous avons obtenu ces valeurs pour R, L, C et G. L'impédance caractéristique de la ligne est d'environ 155 Ohms.
-                        Le point très important ici, c'est la valeur de C (0,022 microfarad par kilomètre). Dans un câble souterrain, la capacité est bien plus forte que sur une ligne aérienne, ce qui va conditionner tout le comportement propagatif.
+                        Pour modéliser ce câble à sa température de fonctionnement de 70°C, nous avons calculé ses paramètres linéiques, ce qui nous donne une impédance caractéristique d'environ 155 ohms. Le chiffre critique dans ce tableau, c'est la capacité linéique : 0,022 microfarad par kilomètre. Dans un câble souterrain, cette capacité est très élevée par rapport à une ligne aérienne, et c'est elle qui va dominer tout le comportement électrique de notre liaison.
                     </aside>
                 </section>
             </section>
 
-            <!-- ===================== SECTION 6 : PROPAGATION ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -853,8 +834,7 @@
                         </div>
                     </div>
                     <aside class="notes">
-                        Sur notre distance de 20 km, nous avons comparé le modèle "série" simplifié (qui néglige la capacité) et le modèle "propagatif" exact. 
-                        Les tensions sont quasi identiques. Par contre, le modèle série surestime le courant injecté en début de ligne. En réalité, le modèle exact montre que le courant diminue au fil de la ligne parce qu'une partie "fuit" à travers le courant capacitif de charge du câble.
+                        Nous avons ensuite comparé deux modèles sur nos 20 km : un modèle simplifié « série » et le modèle exact « propagatif ». Sur le graphique de gauche, on voit que les tensions restent quasi identiques. En revanche, à droite, le modèle série surestime le courant. L'erreur de ce modèle simplifié est de négliger la capacité du câble. Le modèle exact, lui, montre qu'une partie du courant « fuit » en permanence pour charger le câble, créant un courant capacitif non négligeable.
                     </aside>
                 </section>
                 <section>
@@ -872,14 +852,11 @@
                         <li>Courant capacitif important (>400 A) limite la longueur des liaisons souterraines.</li>
                     </ul>
                     <aside class="notes">
-                        Pour bien comprendre ce phénomène, nous avons simulé théoriquement une ligne de 1000 km. 
-                        Ici, les effets capacitifs deviennent dominants. On observe ce qu'on appelle l'Effet Ferranti : la tension monte dramatiquement en bout de ligne.
-                        Mais surtout, le courant capacitif est gigantesque (plus de 400 Ampères). C'est pour cette raison physique que l'on ne peut pas tirer des câbles souterrains alternatifs sur des centaines de kilomètres sans équipement de compensation.
+                        Pour bien illustrer l'impact de ce phénomène capacitif, nous avons simulé un cas théorique poussé à 1000 km. Sur une telle distance, les effets explosent. D'abord, on subit l'effet Ferranti : la tension s'envole en bout de ligne à vide. Ensuite, le courant capacitif devient gigantesque. C'est exactement pour cette raison physique que l'on ne peut pas tirer de câbles souterrains alternatifs sur de trop longues distances sans équipements de compensation.
                     </aside>
                 </section>
             </section>
 
-            <!-- ===================== SECTION 7 : RENDEMENT ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -901,9 +878,7 @@
                         </div>
                     </div>
                     <aside class="notes">
-                        Ce graphique montre la chute du rendement en fonction de la distance. 
-                        Pour notre liaison de 20 km, le rendement est excellent, proche de 100%. 
-                        Mais plus la ligne est longue, plus la circulation de puissance réactive (liée au courant capacitif) engendre des pertes de transport supplémentaires, faisant chuter le rendement de façon linéaire.
+                        Ce graphique illustre la chute du rendement avec la distance. À 20 km, le rendement est excellent, quasi 100%. Mais à grande distance, le courant capacitif fait s'effondrer ce rendement sous les 50%, rendant le transport inefficace.
                     </aside>
                 </section>
                 <section>
@@ -918,12 +893,11 @@
                     </ul>
                     <p>Pour 20 km, pertes totales ~ quelques % ; pour 1000 km, elles deviennent rédhibitoires.</p>
                     <aside class="notes">
-                        D'où viennent ces pertes exactement ? Principalement de l'effet Joule dans l'âme conductrice (qui dépend de la température), et dans une moindre mesure, des pertes diélectriques dans l'isolant XLPE. Le courant capacitif aggrave ces pertes Joule car il force un courant supplémentaire à traverser la ligne juste pour "charger" le câble.
+                        Ces pertes ont trois origines : l'effet Joule dans le conducteur, les pertes diélectriques dans l'isolant, et surtout l'aggravation de ces pertes Joule par le courant capacitif qui surcharge inutilement la ligne.
                     </aside>
                 </section>
             </section>
 
-            <!-- ===================== SECTION 8 : ÉCRANS ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -940,9 +914,7 @@
                     </div>
                     <p>Pour I=400 A, L=20 km, ω=314 rad/s, on obtient des tensions de plusieurs centaines de volts, dangereuses pour le personnel et l'isolant.</p>
                     <aside class="notes">
-                        Enfin, une problématique de sécurité majeure. L'écran de plomb du câble subit un couplage inductif avec l'âme centrale. 
-                        Cela génère une tension induite V = j × omega × M × I. 
-                        Si on met cet écran à la terre d'un seul côté, sur une longueur de 20 km avec 400 Ampères, on se retrouve avec des centaines de volts à l'extrémité non raccordée. C'est extrêmement dangereux pour le personnel et l'isolant.
+                        Dernier point critique : la sécurité. Le courant dans l'âme induit une tension dans l'écran métallique par couplage magnétique. Mis à la terre d'un seul côté sur 20 km, on obtiendrait des centaines de volts mortels à l'autre bout pour le personnel et destructeurs pour l'isolant.
                     </aside>
                 </section>
                 <section>
@@ -958,13 +930,11 @@
                     </ul>
                     <p>Le choix dépend de la longueur, du courant et des exigences de sécurité.</p>
                     <aside class="notes">
-                        Pour pallier ce problème, il y a deux grandes solutions. Soit on met à la terre aux DEUX extrémités. Ça annule la tension dangereuse, mais ça autorise le courant à circuler dans l'écran, ce qui chauffe le câble et crée des pertes Joule massives.
-                        Soit, pour une ligne de cette longueur, on utilise le "Cross-bonding". On croise les écrans des trois phases par sections successives. Les tensions induites s'annulent entre elles. C'est plus complexe à installer, mais ça supprime le danger et ça annule les pertes.
+                        Deux solutions : relier les deux extrémités à la terre, ce qui élimine le danger mais crée de fortes pertes thermiques. Ou utiliser le 'Cross-bonding', un croisement régulier des écrans. Plus complexe à poser, mais c'est la solution optimale pour supprimer le danger et minimiser les pertes.
                     </aside>
                 </section>
             </section>
 
-            <!-- ===================== SECTION 9 : CONCLUSION ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -989,14 +959,11 @@
                         </div>
                     </div>
                     <aside class="notes">
-                        En conclusion, ce projet nous a permis de comprendre l'ensemble de la chaîne. 
-                        Mécaniquement d'abord, nous avons validé que la STEP est un organe de flexibilité redoutable avec un rendement de cycle proche de 61%. 
-                        Électriquement ensuite, nous avons démontré que le transport souterrain sur une telle distance est fortement contraint par les effets capacitifs et par la gestion des écrans.
+                        Pour conclure, la STEP est indispensable avec un rendement global de près de 61%. Mais son raccordement au réseau n'est pas trivial : le transport souterrain est sévèrement limité par les effets capacitifs et impose une gestion rigoureuse des écrans de protection.
                     </aside>
                 </section>
             </section>
 
-            <!-- ===================== MERCI ===================== -->
             <section>
                 <div class="thanks-slide">
                     <h1>Merci pour votre attention</h1>
@@ -1009,7 +976,7 @@
                     </div>
                 </div>
                 <aside class="notes">
-                    Nous vous remercions pour votre attention. Si vous avez des questions concernant nos calculs ou la modélisation sous Mathcad/Matlab, nous serons ravis d'y répondre !
+                    Merci pour votre écoute. Nous sommes à votre disposition pour vos questions.
                 </aside>
             </section>
 
