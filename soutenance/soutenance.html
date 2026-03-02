@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEP & Ligne HTB - Projet ENR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/serif.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --lab-color: #8e44ad;
+        }
+        
+        .reveal {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 26px;
+            color: #333;
+        }
+        
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            color: var(--primary-color);
+            text-transform: none;
+            font-weight: 700;
+            margin-bottom: 0.8em;
+        }
+        
+        .reveal h1 {
+            font-size: 2.8em;
+            border-bottom: 5px solid var(--secondary-color);
+            padding-bottom: 0.4em;
+        }
+        
+        .reveal h2 {
+            font-size: 2.2em;
+            border-bottom: 4px solid var(--secondary-color);
+            padding-bottom: 0.3em;
+        }
+        
+        .reveal h3 {
+            font-size: 1.8em;
+        }
+        
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .success-highlight {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        .university-logo {
+            height: 160px;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #0055A4, #003366);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5em;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            gap: 20px;
+            padding: 0 20px;
+        }
+        
+        .university-logo img {
+            height: 80px;
+            width: auto;
+            background: white;
+            border-radius: 8px;
+            padding: 5px;
+        }
+        
+        .slide-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .citation {
+            font-style: italic;
+            color: #555;
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 30px;
+            margin: 40px 0;
+            font-size: 1.1em;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .comparison-table {
+            font-size: 0.9em;
+            margin: 40px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .results-item {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background: #f9f9f9;
+            min-height: 220px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .results-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .conclusion-box {
+            background: #e8f4ff;
+            border-left: 8px solid var(--secondary-color);
+            padding: 40px;
+            margin-top: 50px;
+            border-radius: 0 8px 8px 0;
+            font-size: 1.1em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .thanks-slide {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px;
+            text-align: center;
+        }
+        
+        .thanks-slide h1 {
+            color: white;
+            border: none;
+            font-size: 3.5em;
+            margin-bottom: 60px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .thanks-slide h3 {
+            font-size: 2.5em;
+            margin-bottom: 80px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .reveal ul, .reveal ol {
+            margin: 40px 0;
+            font-size: 1.1em;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .reveal li {
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .reveal p {
+            margin: 30px 0;
+            line-height: 1.6;
+        }
+        
+        .large-text {
+            font-size: 1.3em;
+        }
+        
+        .diagram-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 60px;
+            margin: 50px 0;
+        }
+        
+        .diagram-item {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .formula-container {
+            font-size: 1.5em;
+            margin: 60px 0;
+            padding: 40px;
+            background: #f8f8f8;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .controls-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 50px;
+            margin: 60px 0;
+        }
+        
+        .control-item {
+            flex: 1;
+            text-align: center;
+            padding: 30px;
+            background: #f0f8ff;
+            border-radius: 12px;
+            border: 2px solid #3498db;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .control-item:hover {
+            background: #e1f0ff;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .test-figure {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            max-width: 90%;
+        }
+        
+        .test-figure:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .test-figure img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            margin-top: 15px;
+            background: #f8f9fa;
+            padding: 10px;
+        }
+        
+        .current-values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .current-value {
+            background: #e8f4ff;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .comparison-highlight {
+            background: #e8f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .icon-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .icon-header i {
+            font-size: 1.5em;
+            color: var(--secondary-color);
+        }
+        
+        .footer-note {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 0.7em;
+            color: #777;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .figure-caption {
+            font-size: 0.8em;
+            font-style: italic;
+            text-align: center;
+            margin-top: 10px;
+            color: #555;
+        }
+        
+        .authors-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .reveal .slide-number {
+            position: absolute;
+            display: block;
+            right: 8px;
+            bottom: 8px;
+            z-index: 31;
+            font-family: Helvetica, sans-serif;
+            font-size: 24px;
+            line-height: 1;
+            color: #fff;
+            background-color: rgba(0, 0, 0, .4);
+            padding: 5px;
+        }
+        
+        .author-item {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        .img-small {
+            width: 60%;
+            margin: 0 auto;
+        }
+        .img-35 {
+            width: 35%;
+            margin: 0 auto;
+        }
+        .left-image {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .left-image .image {
+            flex: 1;
+        }
+        .left-image .text {
+            flex: 1;
+        }
+        .right-image {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .right-image .text {
+            flex: 1;
+        }
+        .right-image .image {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <div style="text-align: center;">
+                    <div class="university-logo">
+                        <span>UNIVERSITÉ GRENOBLE ALPES<br>UFR PHITEM</span>
+                    </div>
+                    <h3>Physique, Ingénierie, Terre, Environnement, Mécanique</h3>
+                    <h1>Étude d’une Station de Transfert d’Énergie par Pompage (STEP) & Modélisation de Ligne HTB 130/225 kV</h1>
+                    <div class="authors-list">
+                        <div class="author-item">
+                            <h4>Réalisé par</h4>
+                            <p>YOUSFI Mohammed Amine</p>
+                            <p>SOUGRATI Wadii</p>
+                            <p>SOUGRATI Mohamed Rida</p>
+                            <p>AZOUIGUI Mohamed</p>
+                            <p>ANSSEM Mohamed</p>
+                        </div>
+                        <div class="author-item">
+                            <h4>Enseignant</h4>
+                            <p>M. JAMES Roudet</p>
+                        </div>
+                    </div>
+                    <p>Année Universitaire 2025 - 2026</p>
+                </div>
+                <div class="footer-note">Projet Énergies Renouvelables – STEP & Ligne HTB</div>
+                <aside class="notes">
+                    Bonjour à tous. [cite_start]Nous sommes ravis de vous présenter aujourd'hui notre projet réalisé dans le cadre du module "Énergies Renouvelables et leur mise en œuvre"[cite: 5]. 
+                    [cite_start]Notre groupe, composé de Mohammed Amine, Wadii, Mohamed Rida, Mohamed et moi-même [cite: 10, 11, 12, 13][cite_start], va vous exposer notre étude portant sur le dimensionnement d'une Station de Transfert d'Énergie par Pompage, couplée à l'analyse de sa ligne de raccordement Haute Tension[cite: 7, 8]. 
+                    [cite_start]Nous tenons tout d'abord à remercier Monsieur Roudet pour son accompagnement[cite: 14, 15].
+                </aside>
+            </section>
+
+            <section>
+                <div class="icon-header">
+                    <i class="fas fa-list"></i>
+                    <h2>Plan de la Présentation</h2>
+                </div>
+                <ol class="large-text">
+                    <li>Introduction et contexte</li>
+                    <li>Principe de fonctionnement d'une STEP</li>
+                    <li>Rôle stratégique dans l'intégration des ENR</li>
+                    <li>Étude théorique d'une installation STEP (données, performances, temps)</li>
+                    <li>Modélisation de la liaison HTB 130/225 kV</li>
+                    <li>Analyse propagative et modèles</li>
+                    <li>Rendement et pertes de la liaison</li>
+                    <li>Étude du potentiel des écrans</li>
+                    <li>Conclusion et perspectives</li>
+                </ol>
+                <aside class="notes">
+                    Pour structurer notre propos, nous commencerons par rappeler le contexte énergétique actuel, puis nous détaillerons le principe mécanique et hydraulique de la STEP. 
+                    Ensuite, dans une seconde grande partie, nous basculerons sur l'aspect purement électrique en modélisant le câble souterrain qui relie cette centrale au réseau, avant d'analyser les pertes et les contraintes de sécurité associées.
+                </aside>
+            </section>
+
+            <section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-industry"></i>
+                        <h2>1.1 Contexte énergétique</h2>
+                    </div>
+                    <p class="large-text">La transition énergétique impose l'intégration massive d'énergies renouvelables intermittentes (solaire, éolien).</p>
+                    <div class="citation large-text">
+                        "Les STEP représentent plus de 90 % des capacités mondiales de stockage d'électricité."
+                    </div>
+                    <ul>
+                        <li>Besoins de flexibilité du réseau</li>
+                        <li>Nécessité de stockage à grande échelle</li>
+                        <li>La STEP : technologie mature et éprouvée</li>
+                    </ul>
+                    <aside class="notes">
+                        [cite_start]Pour introduire le sujet, il faut savoir que la transition énergétique actuelle nous pousse à utiliser massivement le solaire et l'éolien[cite: 22]. [cite_start]Le problème majeur de ces sources est leur intermittence[cite: 22]. 
+                        Pour stabiliser le réseau, le stockage est vital. [cite_start]Aujourd'hui, bien qu'on parle beaucoup de batteries, les STEP représentent plus de 90 % des capacités mondiales de stockage[cite: 25]. [cite_start]C'est une technologie ultra-mature[cite: 24].
+                    </aside>
+                </section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-bolt"></i>
+                        <h2>1.2 Objectifs de l'étude</h2>
+                    </div>
+                    <ol class="large-text">
+                        <li>Comprendre le fonctionnement hydraulique et énergétique d'une STEP</li>
+                        <li>Évaluer ses performances (rendement, temps de stockage/déstockage)</li>
+                        <li>Modéliser la ligne HTB de raccordement (paramètres linéiques, propagation)</li>
+                        <li>Analyser les pertes et les effets capacitifs</li>
+                        <li>Étudier les contraintes liées aux écrans</li>
+                    </ol>
+                    <aside class="notes">
+                        [cite_start]L'objectif de ce projet est double : d'un côté, nous voulons évaluer l'efficacité de la conversion d'énergie (les temps de pompage/turbinage, les rendements)[cite: 267].
+                        [cite_start]Et de l'autre, comprendre comment l'énergie transite électriquement jusqu'au réseau via une liaison HTB de 20 km, en modélisant ses paramètres [cite: 269] [cite_start]et en identifiant ses limites physiques de transport[cite: 271].
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-water"></i>
+                        <h2>2.1 Principe de la STEP</h2>
+                    </div>
+                    <div class="two-column">
+                        <div>
+                            <p>Deux bassins à altitudes différentes :</p>
+                            <ul>
+                                <li><span class="highlight">Pompage (stockage) :</span> eau montée vers bassin supérieur (surplus d'énergie).</li>
+                                <li><span class="success-highlight">Turbinage (production) :</span> eau relâchée pour produire de l'électricité (pics de consommation).</li>
+                            </ul>
+                        </div>
+                        <div class="test-figure">
+                            <img src="schema_step.png" alt="Schéma de principe d'une STEP">
+                            <div class="figure-caption">Figure 1 : Principe d'une STEP</div>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        [cite_start]Concrètement, une STEP fonctionne en circuit fermé entre deux bassins[cite: 30]. 
+                        [cite_start]Quand la demande en électricité est faible (la nuit par exemple), on utilise le surplus d'énergie pour pomper l'eau vers le bassin supérieur[cite: 32]. [cite_start]On stocke de l'énergie potentielle[cite: 33].
+                        [cite_start]Lors d'un pic de consommation, on relâche cette eau qui fait tourner une turbine pour réinjecter du courant sur le réseau[cite: 34, 35].
+                    </aside>
+                </section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-calculator"></i>
+                        <h2>2.2 Énergie potentielle</h2>
+                    </div>
+                    <p>L'énergie stockée est donnée par :</p>
+                    <div class="formula-container">
+                        \[E = \rho \cdot g \cdot H \cdot V\]
+                    </div>
+                    <div class="current-values">
+                        <div class="current-value">\(\rho = 1000\ \text{kg/m}^3\)</div>
+                        <div class="current-value">\(g = 9.81\ \text{m/s}^2\)</div>
+                        <div class="current-value">\(H\) : hauteur de chute (m)</div>
+                        <div class="current-value">\(V\) : volume d'eau (m³)</div>
+                    </div>
+                    <p>Notre installation : H<sub>nom</sub> = 120 m, V<sub>utile</sub> = 2×10⁶ m³.</p>
+                    <aside class="notes">
+                        [cite_start]La physique derrière ça est très simple : c'est l'énergie potentielle de pesanteur, E = rho * g * H * V[cite: 52].
+                        [cite_start]Les paramètres critiques sont donc la hauteur de chute H et le volume du bassin V[cite: 56, 57]. 
+                        [cite_start]Dans notre cas d'étude, nous avons un dénivelé nominal d'environ 120 mètres et un volume transférable de 2 millions de mètres cubes d'eau[cite: 303, 305].
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-solar-panel"></i>
+                        <h2>3.1 Rôle stratégique dans l'intégration des ENR</h2>
+                    </div>
+                    <div class="left-image">
+                        <div class="image">
+                            <img src="stockage_enr.jpg" alt="Rôle du stockage" style="width:100%;">
+                        </div>
+                        <div class="text">
+                            <p>Les STEP compensent l'intermittence du solaire et de l'éolien en stockant l'énergie excédentaire et en la restituant lors des besoins.</p>
+                            <ul>
+                                <li>Lissage de la production</li>
+                                <li>Réduction des congestions réseau</li>
+                                <li>Meilleure valorisation économique de l'énergie</li>
+                                <li>Service système (réserve, réglage fréquence)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        [cite_start]Sur ce graphique, on voit bien l'intérêt de la STEP[cite: 87]. [cite_start]Face au pic de production photovoltaïque en pleine journée, le stockage absorbe l'excédent (zone jaune en bas) pour le redistribuer lors des pics de consommation du soir (zone bleue)[cite: 73, 76, 77]. [cite_start]Cela permet de lisser la production et de stabiliser le réseau[cite: 89].
+                    </aside>
+                </section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h2>3.2 Bénéfices pour le réseau</h2>
+                    </div>
+                    <ul class="large-text">
+                        <li><i class="fas fa-wave-square"></i> <strong>Régulation de fréquence :</strong> Les STEP peuvent passer rapidement de pompage à turbinage pour équilibrer offre/demande.</li>
+                        <li><i class="fas fa-chart-line"></i> <strong>Compensation des fluctuations :</strong> Elles absorbent les variations rapides de production éolienne ou solaire.</li>
+                        <li><i class="fas fa-database"></i> <strong>Stockage massif :</strong> Capacité de plusieurs GWh, contrairement aux batteries.</li>
+                        <li><i class="fas fa-euro-sign"></i> <strong>Optimisation économique :</strong> Achat d'électricité en heures creuses, vente en heures pleines.</li>
+                        <li><i class="fas fa-power-off"></i> <strong>Black start :</strong> Possibilité de redémarrer le réseau après une panne généralisée.</li>
+                    </ul>
+                    <aside class="notes">
+                        Au-delà du simple stockage, les STEP offrent des services vitaux. [cite_start]Elles régulent la fréquence en temps réel [cite: 89][cite_start], compensent les baisses soudaines de vent ou de soleil [cite: 90][cite_start], et surtout, elles permettent une optimisation économique majeure[cite: 92]. [cite_start]Elles offrent une inertie que les batteries chimiques n'ont pas[cite: 91].
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-database"></i>
+                        <h2>4.1 Mise en situation – Données de l'installation</h2>
+                    </div>
+                    <p>Nous étudions une STEP réelle avec les caractéristiques suivantes (données de l'énoncé) :</p>
+                    <div class="controls-container">
+                        <div class="control-item">
+                            <h3>Retenues</h3>
+                            <p>Supérieure : 3,8 Mm³</p>
+                            <p>Inférieure : 2 Mm³ (utile)</p>
+                            <p>HSmax=1057,6 m ; HSmin=1041,4 m</p>
+                            <p>Himax=950,5 m ; Himin=932 m</p>
+                        </div>
+                        <div class="control-item">
+                            <h3>Groupes</h3>
+                            <p>4 groupes de 20 MW</p>
+                            <p>Puissance totale 80 MW</p>
+                            <p>Turbine : Qmax = 25 m³/s</p>
+                            <p>Pompe : Qmax = 13 m³/s</p>
+                        </div>
+                        <div class="control-item">
+                            <h3>Hauteurs de chute</h3>
+                            <p>Hmax = 125,6 m</p>
+                            <p>Hmin = 90,9 m</p>
+                            <p>Hnom = 120 m</p>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        Passons maintenant aux calculs sur notre installation. [cite_start]Nous avons 4 groupes réversibles de 20 MW, soit 80 MW au total[cite: 95].
+                        [cite_start]Une chose très importante à noter : en fonction du remplissage des bassins, la hauteur de chute n'est pas constante[cite: 99]. [cite_start]Elle varie entre 125,6 mètres au maximum et 90,9 mètres au minimum[cite: 101, 102]. [cite_start]Cela va impacter la puissance instantanée en situation réelle[cite: 104].
+                    </aside>
+                </section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-chart-pie"></i>
+                        <h2>4.2 Performances énergétiques</h2>
+                    </div>
+                    <p>À partir des données constructeur :</p>
+                    <ul>
+                        <li>Turbinage : 20 MW électrique pour 25 m³/s sous 100 m → η<sub>t</sub> = 20 / (ρgH Q) = 81,55%</li>
+                        <li>Pompage : 20 MW absorbé donne 13 m³/s sous 117 m → η<sub>p</sub> = (ρgH Q) / 20 = 74,56%</li>
+                    </ul>
+                    <div class="formula-container">
+                        \[ \eta_{cycle} = \eta_t \cdot \eta_p = 60,8\% \]
+                    </div>
+                    <p>Pour produire 1 kWh en turbine, il faut avoir consommé 1,64 kWh en pompage.</p>
+                    <aside class="notes">
+                        À partir des spécifications du constructeur, nous avons calculé les rendements. [cite_start]On trouve environ 81,5% en turbinage [cite: 109] [cite_start]et 74,5% en pompage[cite: 110]. 
+                        [cite_start]Le rendement global sur un cycle complet est donc le produit des deux, soit 60,8%[cite: 112]. 
+                        [cite_start]Ce que ça signifie concrètement, c'est que pour injecter 1 kWh sur le réseau, on a dû dépenser 1,64 kWh en phase de pompage[cite: 115, 116]. [cite_start]La STEP n'est donc pas un producteur, mais bien un outil de transfert temporel[cite: 117].
+                    </aside>
+                </section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-clock"></i>
+                        <h2>4.3 Temps théoriques de fonctionnement</h2>
+                    </div>
+                    <p>Avec 4 groupes en parallèle :</p>
+                    <ul>
+                        <li>Débit total turbine = 4 × 25 = 100 m³/s</li>
+                        <li>Débit total pompe = 4 × 13 = 52 m³/s</li>
+                    </ul>
+                    <p>Pour transférer 2 millions de m³ (capacité de la retenue inférieure) :</p>
+                    <div class="results-grid">
+                        <div class="results-item">
+                            <h4>Turbinage</h4>
+                            <p>\(t_{turb} = \frac{2\times10^6}{100} = 20\,000\ \text{s} = 5,55\ \text{h}\)</p>
+                        </div>
+                        <div class="results-item">
+                            <h4>Pompage</h4>
+                            <p>\(t_{pomp} = \frac{2\times10^6}{52} \approx 38\,462\ \text{s} = 10,69\ \text{h}\)</p>
+                        </div>
+                    </div>
+                    <p>Ces temps sont théoriques car ils supposent hauteur constante, rendements fixes et absence de pertes hydrauliques.</p>
+                    <aside class="notes">
+                        [cite_start]En utilisant les 4 groupes simultanément, transférer les 2 millions de mètres cubes de notre retenue nous prendrait 5 heures et demi en turbinage [cite: 120, 122][cite_start], et près de 11 heures en pompage[cite: 124]. 
+                        [cite_start]Attention, ce sont des valeurs théoriques : elles supposent une hauteur d'eau constante et aucune perte de charge dans les conduites, ce qui n'est jamais le cas dans la réalité puisque le bassin se vide ou se remplit progressivement[cite: 125, 126, 130].
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-bolt"></i>
+                        <h2>5.1 Description de la liaison HTB</h2>
+                    </div>
+                    <p>La centrale est raccordée au réseau 130/225 kV par une liaison souterraine de 20 km. Le câble est unipolaire en aluminium de section 400 mm², isolation XLPE. Sa constitution détaillée (donnée par le constructeur) :</p>
+                    <div class="two-column">
+                        <div>
+                            <ul>
+                                <li>Diamètre âme : 22,9 mm</li>
+                                <li>Épaisseur semi-conducteur interne : 1,3 mm</li>
+                                <li>Épaisseur isolant : 22,2 mm</li>
+                                <li>Épaisseur semi-conducteur externe : 1,6 mm</li>
+                                <li>Gaine plomb : 3,7 mm</li>
+                                <li>Gaine externe : 3,7 mm</li>
+                            </ul>
+                        </div>
+                        <div class="test-figure">
+                            <img src="coupe_cable.jpg" alt="Coupe du câble">
+                            <div class="figure-caption">Figure 2 : Structure du câble (coupe)</div>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        Passons à la deuxième partie de notre étude : comment acheminer cette puissance ? 
+                        [cite_start]L'énoncé stipule un raccordement souterrain de 20 km en 130/225 kV[cite: 133]. [cite_start]C'est un câble unipolaire avec une âme en aluminium de 400 mm2 et un isolant en polyéthylène réticulé (XLPE)[cite: 133]. 
+                        [cite_start]Notez la présence de la gaine de plomb (3,7 mm) qui joue un rôle capital pour la sécurité et le champ électrique, et dont nous reparlerons plus tard[cite: 247].
+                    </aside>
+                </section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-table"></i>
+                        <h2>5.2 Paramètres linéiques à 70°C</h2>
+                    </div>
+                    <p>Les calculs selon la norme 60287-1-2 donnent :</p>
+                    <table class="comparison-table">
+                        <tr><th>Paramètre</th><th>Valeur</th><th>Unité</th></tr>
+                        <tr><td>R (effets peau+proximité)</td><td>0,0849</td><td>Ω/km</td></tr>
+                        <tr><td>L</td><td>0,4576</td><td>mH/km</td></tr>
+                        <tr><td>C</td><td>0,022</td><td>μF/km</td></tr>
+                        <tr><td>G (tan δ = 0,001)</td><td>6,9×10⁻⁶</td><td>S/km</td></tr>
+                    </table>
+                    <p>Impédance caractéristique : \(Z_c = \sqrt{\frac{R+j\omega L}{G+j\omega C}} \approx 155\ \Omega\)</p>
+                    <aside class="notes">
+                        [cite_start]Pour modéliser ce câble, nous avons calculé ses paramètres linéiques à sa température de fonctionnement de 70°C[cite: 138]. 
+                        [cite_start]Nous avons obtenu ces valeurs pour R, L, C et G. L'impédance caractéristique de la ligne est d'environ 155 Ohms[cite: 149].
+                        [cite_start]Le point très important ici, c'est la valeur de C (0,022 microfarad par kilomètre)[cite: 141]. [cite_start]Dans un câble souterrain, la capacité est bien plus forte que sur une ligne aérienne, ce qui va conditionner tout le comportement propagatif[cite: 156].
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-wave-square"></i>
+                        <h2>6.1 Comparaison des modèles à 20 km</h2>
+                    </div>
+                    <div class="right-image">
+                        <div class="text">
+                            <p>Le modèle exact (équations des télégraphistes) prend en compte R, L, C, G. Le modèle série simplifié néglige C et G.</p>
+                            <ul>
+                                <li>À 20 km, les tensions sont proches.</li>
+                                <li>Le courant est surestimé par le modèle série car il ignore le courant capacitif.</li>
+                                <li>La capacité linéique de 0,022 μF/km génère un courant de charge non négligeable.</li>
+                            </ul>
+                        </div>
+                        <div class="image">
+                            <img src="comparaison_modeles_20km.png" alt="Comparaison modèles 20 km" style="width:120%;">
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        [cite_start]Sur notre distance de 20 km, nous avons comparé le modèle "série" simplifié (qui néglige la capacité) et le modèle "propagatif" exact[cite: 155]. 
+                        Les tensions sont quasi identiques. [cite_start]Par contre, le modèle série surestime le courant injecté en début de ligne[cite: 156]. [cite_start]En réalité, le modèle exact montre que le courant diminue au fil de la ligne parce qu'une partie "fuit" à travers le courant capacitif de charge du câble[cite: 156].
+                    </aside>
+                </section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h2>6.2 Comportement sur 1000 km (cas théorique)</h2>
+                    </div>
+                    <p>Pour une longue distance, les effets capacitifs deviennent prépondérants :</p>
+                    <div class="test-figure">
+                        <img src="evolution_VI_1000km.png" alt="Évolution tension/courant 1000 km" style="width:60%;">
+                        <div class="figure-caption">Figure 3 : Effet Ferranti et courant capacitif</div>
+                    </div>
+                    <ul>
+                        <li>Effet Ferranti : élévation de tension en bout de ligne à vide.</li>
+                        <li>Courant capacitif important (>400 A) limite la longueur des liaisons souterraines.</li>
+                    </ul>
+                    <aside class="notes">
+                        [cite_start]Pour bien comprendre ce phénomène, nous avons simulé théoriquement une ligne de 1000 km[cite: 184]. 
+                        Ici, les effets capacitifs deviennent dominants. [cite_start]On observe ce qu'on appelle l'Effet Ferranti : la tension monte dramatiquement en bout de ligne[cite: 185].
+                        [cite_start]Mais surtout, le courant capacitif est gigantesque (plus de 400 Ampères)[cite: 186]. [cite_start]C'est pour cette raison physique que l'on ne peut pas tirer des câbles souterrains alternatifs sur des centaines de kilomètres sans équipement de compensation[cite: 244].
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-chart-pie"></i>
+                        <h2>7.1 Rendement en fonction de la longueur</h2>
+                    </div>
+                    <div class="right-image">
+                        <div class="text">
+                            <p>Le rendement de la liaison décroît avec la distance à cause :</p>
+                            <ul>
+                                <li>Des pertes Joule (R)</li>
+                                <li>Des pertes diélectriques (G)</li>
+                                <li>De l'augmentation du courant capacitif qui accroît les pertes totales</li>
+                            </ul>
+                            <p>Pour 20 km, le rendement reste élevé (>99%). Pour 1000 km, il chute sous 50%, rendant la liaison non viable.</p>
+                        </div>
+                        <div class="image">
+                            <img src="rendement_cable.png" alt="Rendement du câble" style="width:100%;">
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        [cite_start]Ce graphique montre la chute du rendement en fonction de la distance[cite: 221]. 
+                        Pour notre liaison de 20 km, le rendement est excellent, proche de 100%. 
+                        [cite_start]Mais plus la ligne est longue, plus la circulation de puissance réactive (liée au courant capacitif) engendre des pertes de transport supplémentaires, faisant chuter le rendement de façon linéaire[cite: 224, 242].
+                    </aside>
+                </section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-fire"></i>
+                        <h2>7.2 Origine des pertes</h2>
+                    </div>
+                    <ul>
+                        <li><strong>Pertes Joule :</strong> liées à la résistance de l'âme (R I²). Augmentent avec la température (coefficient de température).</li>
+                        <li><strong>Pertes diélectriques :</strong> dans l'isolant, proportionnelles à G V² et à tan δ. Faibles mais cumulatives.</li>
+                        <li><strong>Courant capacitif :</strong> circule dans la capacité linéique, génère des pertes Joule supplémentaires dans l'âme et l'écran.</li>
+                    </ul>
+                    <p>Pour 20 km, pertes totales ~ quelques % ; pour 1000 km, elles deviennent rédhibitoires.</p>
+                    <aside class="notes">
+                        D'où viennent ces pertes exactement ? [cite_start]Principalement de l'effet Joule dans l'âme conductrice (qui dépend de la température) [cite: 222][cite_start], et dans une moindre mesure, des pertes diélectriques dans l'isolant XLPE[cite: 223]. [cite_start]Le courant capacitif aggrave ces pertes Joule car il force un courant supplémentaire à traverser la ligne juste pour "charger" le câble[cite: 270, 271].
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <h2>8.1 Tension induite dans les écrans</h2>
+                    </div>
+                    <p>L'écran métallique (gaine plomb) subit un couplage inductif avec l'âme. La mutuelle M vaut :</p>
+                    <div class="formula-container">
+                        \[M = 0,2 \cdot \ln\left(\frac{2s}{d_{moy}}\right) \times 10^{-3} \ \text{H/km}\]
+                    </div>
+                    <p>La tension induite à une extrémité si l'écran n'est relié qu'à l'autre bout :</p>
+                    <div class="formula-container">
+                        \[V_{induit} = j\omega M I \times L\]
+                    </div>
+                    <p>Pour I=400 A, L=20 km, ω=314 rad/s, on obtient des tensions de plusieurs centaines de volts, dangereuses pour le personnel et l'isolant.</p>
+                    <aside class="notes">
+                        Enfin, une problématique de sécurité majeure. [cite_start]L'écran de plomb du câble subit un couplage inductif avec l'âme centrale[cite: 248]. 
+                        [cite_start]Cela génère une tension induite V = j * omega * M * I[cite: 251, 252]. 
+                        Si on met cet écran à la terre d'un seul côté, sur une longueur de 20 km avec 400 Ampères, on se retrouve avec des centaines de volts à l'extrémité non raccordée. [cite_start]C'est extrêmement dangereux pour le personnel et l'isolant[cite: 253, 255, 256].
+                    </aside>
+                </section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-tools"></i>
+                        <h2>8.2 Solutions pour limiter les tensions</h2>
+                    </div>
+                    <ul>
+                        <li><span class="success-highlight">Mise à la terre aux deux extrémités</span> : permet la circulation du courant induit, réduit la tension mais génère des pertes par courants circulants dans l'écran (augmentation des pertes Joule).</li>
+                        <li><span class="highlight">Cross-bonding</span> : les écrans sont croisés par sections (typiquement 3 sections) pour annuler la tension induite totale. <br>
+                            <strong>Avantages :</strong> Supprime les tensions dangereuses, minimise les pertes. <br>
+                            <strong>Inconvénients :</strong> Complexité de mise en œuvre, nécessite des sections de câble et des boîtes de jonction spéciales.</li>
+                    </ul>
+                    <p>Le choix dépend de la longueur, du courant et des exigences de sécurité.</p>
+                    <aside class="notes">
+                        Pour pallier ce problème, il y a deux grandes solutions. Soit on met à la terre aux DEUX extrémités. [cite_start]Ça annule la tension dangereuse, mais ça autorise le courant à circuler dans l'écran, ce qui chauffe le câble et crée des pertes Joule massives[cite: 260].
+                        [cite_start]Soit, pour une ligne de cette longueur, on utilise le "Cross-bonding"[cite: 261]. On croise les écrans des trois phases par sections successives. Les tensions induites s'annulent entre elles. [cite_start]C'est plus complexe à installer, mais ça supprime le danger et ça annule les pertes[cite: 261, 262].
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-flag-checkered"></i>
+                        <h2>9. Conclusion et perspectives</h2>
+                    </div>
+                    <div class="conclusion-box large-text">
+                        <ul>
+                            <li>La STEP est un outil de stockage massif indispensable avec un rendement de cycle de 60,8%.</li>
+                            <li>L'étude de la liaison HTB a montré l'importance de la modélisation propagative et des effets capacitifs.</li>
+                            <li>La maîtrise des tensions induites dans les écrans est cruciale pour la sécurité et les pertes.</li>
+                        </ul>
+                    </div>
+                    <div class="results-grid" style="margin-top:30px;">
+                        <div class="results-item">
+                            <h4><i class="fas fa-robot"></i> Maintenance prédictive</h4>
+                            <p>Surveillance des câbles par capteurs (température, décharges partielles) pour anticiper les défauts.</p>
+                        </div>
+                        <div class="results-item">
+                            <h4><i class="fas fa-microchip"></i> Matériaux innovants</h4>
+                            <p>Isolants à plus faibles pertes (XLPE amélioré), semi-conducteurs SiC pour l'électronique de puissance.</p>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        [cite_start]En conclusion, ce projet nous a permis de comprendre l'ensemble de la chaîne[cite: 265]. 
+                        [cite_start]Mécaniquement d'abord, nous avons validé que la STEP est un organe de flexibilité redoutable avec un rendement de cycle proche de 61%[cite: 267, 268]. 
+                        [cite_start]Électriquement ensuite, nous avons démontré que le transport souterrain sur une telle distance est fortement contraint par les effets capacitifs et par la gestion des écrans[cite: 270, 272].
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <div class="thanks-slide">
+                    <h1>Merci pour votre attention</h1>
+                    <h3>Questions & Discussion</h3>
+                    <div style="font-size: 1.5em; margin-top: 50px;">
+                        <p><i class="fas fa-users"></i> YOUSFI M.A., SOUGRATI W., SOUGRATI M.R., AZOUIGUI M., ANSSEM M.</p>
+                        <p><i class="fas fa-user-tie"></i> Enseignant : M. JAMES Roudet</p>
+                        <p><i class="fas fa-university"></i> Université Grenoble Alpes - UFR PHITEM</p>
+                        <p><i class="fas fa-calendar-alt"></i> Année Universitaire 2025-2026</p>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Nous vous remercions pour votre attention. Si vous avez des questions concernant nos calculs ou la modélisation sous Mathcad/Matlab, nous serons ravis d'y répondre !
+                </aside>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/math/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script>
+        Reveal.initialize({
+            plugins: [ RevealMath.KaTeX, RevealNotes ],
+            hash: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            slideNumber: 'c/t',
+            pdfSeparateFragments: false,
+            width: 1920,
+            height: 1080,
+            margin: 0.1,
+            showNotes: false // Gardé à false, il suffit d'appuyer sur 's' pour la vue présentateur
+        });
+    </script>
+</body>
+</html>
