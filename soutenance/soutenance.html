@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -402,18 +403,29 @@
         .right-image .image {
             flex: 1;
         }
+
+        /* Style for script notes display */
+        .script-note {
+            background: #fff8e1;
+            border-left: 6px solid #f39c12;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
     <div class="reveal">
         <div class="slides">
+            <!-- ===================== SLIDE TITRE ===================== -->
             <section>
                 <div style="text-align: center;">
                     <div class="university-logo">
                         <span>UNIVERSITÉ GRENOBLE ALPES<br>UFR PHITEM</span>
                     </div>
                     <h3>Physique, Ingénierie, Terre, Environnement, Mécanique</h3>
-                    <h1>Étude d’une Station de Transfert d’Énergie par Pompage (STEP) & Modélisation de Ligne HTB 130/225 kV</h1>
+                    <h1>Étude d'une Station de Transfert d'Énergie par Pompage (STEP) & Modélisation de Ligne HTB 130/225 kV</h1>
                     <div class="authors-list">
                         <div class="author-item">
                             <h4>Réalisé par</h4>
@@ -432,12 +444,13 @@
                 </div>
                 <div class="footer-note">Projet Énergies Renouvelables – STEP & Ligne HTB</div>
                 <aside class="notes">
-                    Bonjour à tous. [cite_start]Nous sommes ravis de vous présenter aujourd'hui notre projet réalisé dans le cadre du module "Énergies Renouvelables et leur mise en œuvre"[cite: 5]. 
-                    [cite_start]Notre groupe, composé de Mohammed Amine, Wadii, Mohamed Rida, Mohamed et moi-même [cite: 10, 11, 12, 13][cite_start], va vous exposer notre étude portant sur le dimensionnement d'une Station de Transfert d'Énergie par Pompage, couplée à l'analyse de sa ligne de raccordement Haute Tension[cite: 7, 8]. 
-                    [cite_start]Nous tenons tout d'abord à remercier Monsieur Roudet pour son accompagnement[cite: 14, 15].
+                    Bonjour à tous. Nous sommes ravis de vous présenter aujourd'hui notre projet réalisé dans le cadre du module "Énergies Renouvelables et leur mise en œuvre". 
+                    Notre groupe, composé de Mohammed Amine, Wadii, Mohamed Rida, Mohamed et moi-même, va vous exposer notre étude portant sur le dimensionnement d'une Station de Transfert d'Énergie par Pompage, couplée à l'analyse de sa ligne de raccordement Haute Tension. 
+                    Nous tenons tout d'abord à remercier Monsieur Roudet pour son accompagnement.
                 </aside>
             </section>
 
+            <!-- ===================== PLAN ===================== -->
             <section>
                 <div class="icon-header">
                     <i class="fas fa-list"></i>
@@ -460,6 +473,7 @@
                 </aside>
             </section>
 
+            <!-- ===================== SECTION 1 : INTRO ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -476,8 +490,8 @@
                         <li>La STEP : technologie mature et éprouvée</li>
                     </ul>
                     <aside class="notes">
-                        [cite_start]Pour introduire le sujet, il faut savoir que la transition énergétique actuelle nous pousse à utiliser massivement le solaire et l'éolien[cite: 22]. [cite_start]Le problème majeur de ces sources est leur intermittence[cite: 22]. 
-                        Pour stabiliser le réseau, le stockage est vital. [cite_start]Aujourd'hui, bien qu'on parle beaucoup de batteries, les STEP représentent plus de 90 % des capacités mondiales de stockage[cite: 25]. [cite_start]C'est une technologie ultra-mature[cite: 24].
+                        Pour introduire le sujet, il faut savoir que la transition énergétique actuelle nous pousse à utiliser massivement le solaire et l'éolien. Le problème majeur de ces sources est leur intermittence. 
+                        Pour stabiliser le réseau, le stockage est vital. Aujourd'hui, bien qu'on parle beaucoup de batteries, les STEP représentent plus de 90 % des capacités mondiales de stockage. C'est une technologie ultra-mature.
                     </aside>
                 </section>
                 <section>
@@ -493,12 +507,13 @@
                         <li>Étudier les contraintes liées aux écrans</li>
                     </ol>
                     <aside class="notes">
-                        [cite_start]L'objectif de ce projet est double : d'un côté, nous voulons évaluer l'efficacité de la conversion d'énergie (les temps de pompage/turbinage, les rendements)[cite: 267].
-                        [cite_start]Et de l'autre, comprendre comment l'énergie transite électriquement jusqu'au réseau via une liaison HTB de 20 km, en modélisant ses paramètres [cite: 269] [cite_start]et en identifiant ses limites physiques de transport[cite: 271].
+                        L'objectif de ce projet est double : d'un côté, nous voulons évaluer l'efficacité de la conversion d'énergie (les temps de pompage/turbinage, les rendements).
+                        Et de l'autre, comprendre comment l'énergie transite électriquement jusqu'au réseau via une liaison HTB de 20 km, en modélisant ses paramètres et en identifiant ses limites physiques de transport.
                     </aside>
                 </section>
             </section>
 
+            <!-- ===================== SECTION 2 : PRINCIPE ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -519,9 +534,9 @@
                         </div>
                     </div>
                     <aside class="notes">
-                        [cite_start]Concrètement, une STEP fonctionne en circuit fermé entre deux bassins[cite: 30]. 
-                        [cite_start]Quand la demande en électricité est faible (la nuit par exemple), on utilise le surplus d'énergie pour pomper l'eau vers le bassin supérieur[cite: 32]. [cite_start]On stocke de l'énergie potentielle[cite: 33].
-                        [cite_start]Lors d'un pic de consommation, on relâche cette eau qui fait tourner une turbine pour réinjecter du courant sur le réseau[cite: 34, 35].
+                        Concrètement, une STEP fonctionne en circuit fermé entre deux bassins. 
+                        Quand la demande en électricité est faible (la nuit par exemple), on utilise le surplus d'énergie pour pomper l'eau vers le bassin supérieur. On stocke de l'énergie potentielle.
+                        Lors d'un pic de consommation, on relâche cette eau qui fait tourner une turbine pour réinjecter du courant sur le réseau.
                     </aside>
                 </section>
                 <section>
@@ -541,13 +556,14 @@
                     </div>
                     <p>Notre installation : H<sub>nom</sub> = 120 m, V<sub>utile</sub> = 2×10⁶ m³.</p>
                     <aside class="notes">
-                        [cite_start]La physique derrière ça est très simple : c'est l'énergie potentielle de pesanteur, E = rho * g * H * V[cite: 52].
-                        [cite_start]Les paramètres critiques sont donc la hauteur de chute H et le volume du bassin V[cite: 56, 57]. 
-                        [cite_start]Dans notre cas d'étude, nous avons un dénivelé nominal d'environ 120 mètres et un volume transférable de 2 millions de mètres cubes d'eau[cite: 303, 305].
+                        La physique derrière ça est très simple : c'est l'énergie potentielle de pesanteur, E = rho × g × H × V.
+                        Les paramètres critiques sont donc la hauteur de chute H et le volume du bassin V. 
+                        Dans notre cas d'étude, nous avons un dénivelé nominal d'environ 120 mètres et un volume transférable de 2 millions de mètres cubes d'eau.
                     </aside>
                 </section>
             </section>
 
+            <!-- ===================== SECTION 3 : ROLE ENR ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -569,7 +585,7 @@
                         </div>
                     </div>
                     <aside class="notes">
-                        [cite_start]Sur ce graphique, on voit bien l'intérêt de la STEP[cite: 87]. [cite_start]Face au pic de production photovoltaïque en pleine journée, le stockage absorbe l'excédent (zone jaune en bas) pour le redistribuer lors des pics de consommation du soir (zone bleue)[cite: 73, 76, 77]. [cite_start]Cela permet de lisser la production et de stabiliser le réseau[cite: 89].
+                        Sur ce graphique, on voit bien l'intérêt de la STEP. Face au pic de production photovoltaïque en pleine journée, le stockage absorbe l'excédent pour le redistribuer lors des pics de consommation du soir. Cela permet de lisser la production et de stabiliser le réseau.
                     </aside>
                 </section>
                 <section>
@@ -585,94 +601,186 @@
                         <li><i class="fas fa-power-off"></i> <strong>Black start :</strong> Possibilité de redémarrer le réseau après une panne généralisée.</li>
                     </ul>
                     <aside class="notes">
-                        Au-delà du simple stockage, les STEP offrent des services vitaux. [cite_start]Elles régulent la fréquence en temps réel [cite: 89][cite_start], compensent les baisses soudaines de vent ou de soleil [cite: 90][cite_start], et surtout, elles permettent une optimisation économique majeure[cite: 92]. [cite_start]Elles offrent une inertie que les batteries chimiques n'ont pas[cite: 91].
+                        Au-delà du simple stockage, les STEP offrent des services vitaux. Elles régulent la fréquence en temps réel, compensent les baisses soudaines de vent ou de soleil, et surtout, elles permettent une optimisation économique majeure. Elles offrent une inertie que les batteries chimiques n'ont pas.
                     </aside>
                 </section>
             </section>
 
+            <!-- ===================== SECTION 4 : ÉTUDE THÉORIQUE (MA PARTIE) ===================== -->
             <section>
+                <!-- 4.1 Données -->
                 <section>
                     <div class="icon-header">
                         <i class="fas fa-database"></i>
                         <h2>4.1 Mise en situation – Données de l'installation</h2>
                     </div>
-                    <p>Nous étudions une STEP réelle avec les caractéristiques suivantes (données de l'énoncé) :</p>
+                    <p>Je vais maintenant vous présenter <strong>l'étude théorique de notre installation STEP</strong>. Cette partie a pour objectif de quantifier les performances énergétiques réelles du système à partir des données techniques fournies.</p>
                     <div class="controls-container">
                         <div class="control-item">
                             <h3>Retenues</h3>
                             <p>Supérieure : 3,8 Mm³</p>
                             <p>Inférieure : 2 Mm³ (utile)</p>
-                            <p>HSmax=1057,6 m ; HSmin=1041,4 m</p>
-                            <p>Himax=950,5 m ; Himin=932 m</p>
+                            <p>H<sub>Smax</sub>=1057,6 m ; H<sub>Smin</sub>=1041,4 m</p>
+                            <p>H<sub>imax</sub>=950,5 m ; H<sub>imin</sub>=932 m</p>
                         </div>
                         <div class="control-item">
                             <h3>Groupes</h3>
                             <p>4 groupes de 20 MW</p>
-                            <p>Puissance totale 80 MW</p>
-                            <p>Turbine : Qmax = 25 m³/s</p>
-                            <p>Pompe : Qmax = 13 m³/s</p>
+                            <p><span class="highlight">Puissance totale : 80 MW</span></p>
+                            <p>Turbine : Q<sub>max</sub> = 25 m³/s</p>
+                            <p>Pompe : Q<sub>max</sub> = 13 m³/s</p>
                         </div>
                         <div class="control-item">
                             <h3>Hauteurs de chute</h3>
-                            <p>Hmax = 125,6 m</p>
-                            <p>Hmin = 90,9 m</p>
-                            <p>Hnom = 120 m</p>
+                            <p><span class="success-highlight">H<sub>max</sub> = 125,6 m</span></p>
+                            <p><span class="highlight">H<sub>min</sub> = 90,9 m</span></p>
+                            <p>H<sub>nom</sub> = 120 m</p>
                         </div>
                     </div>
                     <aside class="notes">
-                        Passons maintenant aux calculs sur notre installation. [cite_start]Nous avons 4 groupes réversibles de 20 MW, soit 80 MW au total[cite: 95].
-                        [cite_start]Une chose très importante à noter : en fonction du remplissage des bassins, la hauteur de chute n'est pas constante[cite: 99]. [cite_start]Elle varie entre 125,6 mètres au maximum et 90,9 mètres au minimum[cite: 101, 102]. [cite_start]Cela va impacter la puissance instantanée en situation réelle[cite: 104].
+                        🎤 SCRIPT — SLIDE 4.1
+
+                        "Je vais maintenant vous présenter l'étude théorique de notre installation STEP. Cette partie a pour objectif de quantifier les performances énergétiques réelles du système à partir des données techniques fournies.
+
+                        Notre installation a une puissance totale de 80 MW, répartie sur quatre groupes réversibles de 20 MW chacun. La différence d'altitude nominale entre les deux retenues est de 120 mètres, et le volume d'eau exploitable est de 2 millions de mètres cubes. Ce sont ces paramètres qui vont nous permettre de calculer les performances du système."
                     </aside>
                 </section>
+
+                <!-- 4.2 Plage hydraulique -->
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <h2>4.2 Plage réelle de fonctionnement hydraulique</h2>
+                    </div>
+                    <p>En réalité, la hauteur de chute <strong>n'est pas constante</strong> : elle varie selon le niveau des retenues.</p>
+                    <div class="results-grid" style="margin-top: 40px;">
+                        <div class="results-item" style="background: #e8f8f5; border-color: var(--success-color); text-align:center;">
+                            <h4 style="color: var(--success-color);">Hauteur maximale</h4>
+                            <p style="font-size: 2em; font-weight: bold; color: var(--success-color);">H<sub>max</sub> = 125,6 m</p>
+                            <p>Bassin supérieur plein + Bassin inférieur vide</p>
+                        </div>
+                        <div class="results-item" style="background: #fef9e7; border-color: var(--accent-color); text-align:center;">
+                            <h4 style="color: var(--accent-color);">Hauteur minimale</h4>
+                            <p style="font-size: 2em; font-weight: bold; color: var(--accent-color);">H<sub>min</sub> = 90,9 m</p>
+                            <p>Bassin supérieur vide + Bassin inférieur plein</p>
+                        </div>
+                    </div>
+                    <div class="conclusion-box" style="margin-top: 30px; padding: 20px;">
+                        <p>⚠️ Cette variation impacte directement la <strong>puissance hydraulique disponible</strong> et les <strong>débits admissibles</strong> en exploitation réelle.</p>
+                    </div>
+                    <aside class="notes">
+                        🎤 SCRIPT — SLIDE 4.2
+
+                        "En réalité, la hauteur de chute n'est pas constante : elle varie entre 90,9 m et 125,6 m selon le niveau des retenues. Cela signifie que la puissance disponible et les débits admissibles changent en permanence au cours de l'exploitation. L'installation ne fonctionne donc pas dans des conditions fixes, ce qui impacte ses performances instantanées."
+                    </aside>
+                </section>
+
+                <!-- 4.3 Performances énergétiques -->
                 <section>
                     <div class="icon-header">
                         <i class="fas fa-chart-pie"></i>
-                        <h2>4.2 Performances énergétiques</h2>
+                        <h2>4.3 Performances énergétiques des groupes</h2>
                     </div>
-                    <p>À partir des données constructeur :</p>
-                    <ul>
-                        <li>Turbinage : 20 MW électrique pour 25 m³/s sous 100 m → η<sub>t</sub> = 20 / (ρgH Q) = 81,55%</li>
-                        <li>Pompage : 20 MW absorbé donne 13 m³/s sous 117 m → η<sub>p</sub> = (ρgH Q) / 20 = 74,56%</li>
-                    </ul>
-                    <div class="formula-container">
-                        \[ \eta_{cycle} = \eta_t \cdot \eta_p = 60,8\% \]
+                    <p>À partir des données constructeur, les rendements des groupes sont évalués à :</p>
+                    <div class="controls-container" style="gap: 30px; margin: 40px 0;">
+                        <div class="control-item" style="background: #e8f8f5; border-color: var(--success-color);">
+                            <i class="fas fa-cogs" style="font-size:2em; color: var(--success-color);"></i>
+                            <h3>Mode Turbinage</h3>
+                            <p style="font-size: 2em; font-weight: bold; color: var(--success-color);">η<sub>t</sub> = 81,55 %</p>
+                        </div>
+                        <div class="control-item" style="background: #fef9e7; border-color: var(--accent-color);">
+                            <i class="fas fa-tint" style="font-size:2em; color: var(--accent-color);"></i>
+                            <h3>Mode Pompage</h3>
+                            <p style="font-size: 2em; font-weight: bold; color: var(--accent-color);">η<sub>p</sub> = 74,56 %</p>
+                        </div>
                     </div>
-                    <p>Pour produire 1 kWh en turbine, il faut avoir consommé 1,64 kWh en pompage.</p>
+                    <div class="formula-container" style="margin: 20px 0; padding: 25px;">
+                        \[\eta_{cycle} = \eta_t \times \eta_p = 81{,}55\% \times 74{,}56\% = \mathbf{60{,}8\%}\]
+                    </div>
                     <aside class="notes">
-                        À partir des spécifications du constructeur, nous avons calculé les rendements. [cite_start]On trouve environ 81,5% en turbinage [cite: 109] [cite_start]et 74,5% en pompage[cite: 110]. 
-                        [cite_start]Le rendement global sur un cycle complet est donc le produit des deux, soit 60,8%[cite: 112]. 
-                        [cite_start]Ce que ça signifie concrètement, c'est que pour injecter 1 kWh sur le réseau, on a dû dépenser 1,64 kWh en phase de pompage[cite: 115, 116]. [cite_start]La STEP n'est donc pas un producteur, mais bien un outil de transfert temporel[cite: 117].
+                        🎤 SCRIPT — SLIDE 4.3
+
+                        "À partir des données constructeur, on a calculé les rendements des groupes : environ 81,55 % en mode turbinage et 74,56 % en mode pompage.
+
+                        En combinant ces deux rendements, on obtient le rendement global du cycle — c'est-à-dire l'efficacité d'un aller-retour complet : pompage puis turbinage. Ce rendement s'élève à 60,8 %."
                     </aside>
                 </section>
+
+                <!-- 4.4 Analyse énergétique -->
+                <section>
+                    <div class="icon-header">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h2>4.4 Analyse énergétique du cycle</h2>
+                    </div>
+                    <div class="two-column" style="gap: 60px; align-items: stretch;">
+                        <div>
+                            <p>Pour produire <strong>1 kWh</strong> en turbinage, il faut consommer en pompage :</p>
+                            <div class="formula-container" style="margin: 30px 0; padding: 30px;">
+                                \[E_{entrant} = \frac{1}{\eta_{cycle}} = \frac{1}{0{,}608} = \mathbf{1{,}64\ kWh}\]
+                            </div>
+                        </div>
+                        <div>
+                            <div class="conclusion-box" style="margin: 0; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                                <h4>💡 À retenir</h4>
+                                <p>La STEP <strong>n'est pas un producteur net d'énergie</strong>.</p>
+                                <p>C'est un <strong>outil de transfert temporel</strong> : elle stocke l'énergie quand elle est abondante et la restitue quand elle est rare et chère.</p>
+                                <p>Son intérêt est <strong>économique et systémique</strong>, pas énergétique au sens strict.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        🎤 SCRIPT — SLIDE 4.4
+
+                        "Ce rendement de 60,8 % signifie concrètement que pour produire 1 kWh en turbinage, il faut avoir consommé 1,64 kWh en pompage.
+
+                        Cela confirme que la STEP n'est pas un producteur net d'énergie — elle perd une partie de l'énergie à chaque cycle. Son intérêt n'est donc pas énergétique au sens strict, mais économique et systémique : elle permet de décaler dans le temps la restitution d'énergie, en stockant quand l'électricité est bon marché et en produisant quand elle est rare et chère."
+                    </aside>
+                </section>
+
+                <!-- 4.5 Temps théoriques -->
                 <section>
                     <div class="icon-header">
                         <i class="fas fa-clock"></i>
-                        <h2>4.3 Temps théoriques de fonctionnement</h2>
+                        <h2>4.5 Temps théoriques de fonctionnement</h2>
                     </div>
-                    <p>Avec 4 groupes en parallèle :</p>
-                    <ul>
-                        <li>Débit total turbine = 4 × 25 = 100 m³/s</li>
-                        <li>Débit total pompe = 4 × 13 = 52 m³/s</li>
-                    </ul>
-                    <p>Pour transférer 2 millions de m³ (capacité de la retenue inférieure) :</p>
-                    <div class="results-grid">
-                        <div class="results-item">
-                            <h4>Turbinage</h4>
-                            <p>\(t_{turb} = \frac{2\times10^6}{100} = 20\,000\ \text{s} = 5,55\ \text{h}\)</p>
+                    <p>Avec 4 groupes en parallèle et un volume de 2 × 10⁶ m³ :</p>
+                    <div class="results-grid" style="margin-top: 30px;">
+                        <div class="results-item" style="text-align:center; background: #e8f8f5; border-color: var(--success-color);">
+                            <h4><i class="fas fa-play-circle" style="color: var(--success-color);"></i> Turbinage</h4>
+                            <p>Débit total = 4 × 25 = 100 m³/s</p>
+                            <div class="formula-container" style="margin: 15px 0; padding: 15px; font-size: 1.1em;">
+                                \[t_{turb} = \frac{2\times10^6}{100} = 20\,000\ \text{s}\]
+                            </div>
+                            <p style="font-size: 1.8em; font-weight: bold; color: var(--success-color);">≈ 5 h 33 min</p>
                         </div>
-                        <div class="results-item">
-                            <h4>Pompage</h4>
-                            <p>\(t_{pomp} = \frac{2\times10^6}{52} \approx 38\,462\ \text{s} = 10,69\ \text{h}\)</p>
+                        <div class="results-item" style="text-align:center; background: #fef9e7; border-color: var(--accent-color);">
+                            <h4><i class="fas fa-arrow-up" style="color: var(--accent-color);"></i> Pompage</h4>
+                            <p>Débit total = 4 × 13 = 52 m³/s</p>
+                            <div class="formula-container" style="margin: 15px 0; padding: 15px; font-size: 1.1em;">
+                                \[t_{pomp} = \frac{2\times10^6}{52} \approx 38\,462\ \text{s}\]
+                            </div>
+                            <p style="font-size: 1.8em; font-weight: bold; color: var(--accent-color);">≈ 10 h 41 min</p>
                         </div>
                     </div>
-                    <p>Ces temps sont théoriques car ils supposent hauteur constante, rendements fixes et absence de pertes hydrauliques.</p>
+                    <div class="conclusion-box" style="margin-top: 25px; padding: 20px; font-size: 0.95em;">
+                        ⚠️ <strong>Valeurs théoriques</strong> — supposent : hauteur de chute constante, rendements fixes, absence de pertes hydrauliques dans les conduites.
+                    </div>
                     <aside class="notes">
-                        [cite_start]En utilisant les 4 groupes simultanément, transférer les 2 millions de mètres cubes de notre retenue nous prendrait 5 heures et demi en turbinage [cite: 120, 122][cite_start], et près de 11 heures en pompage[cite: 124]. 
-                        [cite_start]Attention, ce sont des valeurs théoriques : elles supposent une hauteur d'eau constante et aucune perte de charge dans les conduites, ce qui n'est jamais le cas dans la réalité puisque le bassin se vide ou se remplit progressivement[cite: 125, 126, 130].
+                        🎤 SCRIPT — SLIDE 4.5
+
+                        "En considérant le volume de 2 millions de mètres cubes et les débits nominaux des groupes, on obtient : un temps de turbinage de 5h33 environ, et un temps de pompage de 10h41 environ.
+
+                        Ces valeurs sont dites théoriques car elles supposent une hauteur de chute constante, l'absence de pertes hydrauliques, et des rendements stables. En exploitation réelle, tous ces paramètres varient, ce qui modifie ces durées.
+
+                        ---
+
+                        Je passe maintenant la parole à mon collègue qui va vous présenter la modélisation de la liaison électrique HTB qui raccorde cette centrale au réseau."
                     </aside>
                 </section>
             </section>
+            <!-- ===================== FIN SECTION 4 ===================== -->
 
+            <!-- ===================== SECTION 5 : HTB ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -698,8 +806,8 @@
                     </div>
                     <aside class="notes">
                         Passons à la deuxième partie de notre étude : comment acheminer cette puissance ? 
-                        [cite_start]L'énoncé stipule un raccordement souterrain de 20 km en 130/225 kV[cite: 133]. [cite_start]C'est un câble unipolaire avec une âme en aluminium de 400 mm2 et un isolant en polyéthylène réticulé (XLPE)[cite: 133]. 
-                        [cite_start]Notez la présence de la gaine de plomb (3,7 mm) qui joue un rôle capital pour la sécurité et le champ électrique, et dont nous reparlerons plus tard[cite: 247].
+                        L'énoncé stipule un raccordement souterrain de 20 km en 130/225 kV. C'est un câble unipolaire avec une âme en aluminium de 400 mm² et un isolant en polyéthylène réticulé (XLPE). 
+                        Notez la présence de la gaine de plomb (3,7 mm) qui joue un rôle capital pour la sécurité et le champ électrique, et dont nous reparlerons plus tard.
                     </aside>
                 </section>
                 <section>
@@ -717,13 +825,14 @@
                     </table>
                     <p>Impédance caractéristique : \(Z_c = \sqrt{\frac{R+j\omega L}{G+j\omega C}} \approx 155\ \Omega\)</p>
                     <aside class="notes">
-                        [cite_start]Pour modéliser ce câble, nous avons calculé ses paramètres linéiques à sa température de fonctionnement de 70°C[cite: 138]. 
-                        [cite_start]Nous avons obtenu ces valeurs pour R, L, C et G. L'impédance caractéristique de la ligne est d'environ 155 Ohms[cite: 149].
-                        [cite_start]Le point très important ici, c'est la valeur de C (0,022 microfarad par kilomètre)[cite: 141]. [cite_start]Dans un câble souterrain, la capacité est bien plus forte que sur une ligne aérienne, ce qui va conditionner tout le comportement propagatif[cite: 156].
+                        Pour modéliser ce câble, nous avons calculé ses paramètres linéiques à sa température de fonctionnement de 70°C. 
+                        Nous avons obtenu ces valeurs pour R, L, C et G. L'impédance caractéristique de la ligne est d'environ 155 Ohms.
+                        Le point très important ici, c'est la valeur de C (0,022 microfarad par kilomètre). Dans un câble souterrain, la capacité est bien plus forte que sur une ligne aérienne, ce qui va conditionner tout le comportement propagatif.
                     </aside>
                 </section>
             </section>
 
+            <!-- ===================== SECTION 6 : PROPAGATION ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -744,8 +853,8 @@
                         </div>
                     </div>
                     <aside class="notes">
-                        [cite_start]Sur notre distance de 20 km, nous avons comparé le modèle "série" simplifié (qui néglige la capacité) et le modèle "propagatif" exact[cite: 155]. 
-                        Les tensions sont quasi identiques. [cite_start]Par contre, le modèle série surestime le courant injecté en début de ligne[cite: 156]. [cite_start]En réalité, le modèle exact montre que le courant diminue au fil de la ligne parce qu'une partie "fuit" à travers le courant capacitif de charge du câble[cite: 156].
+                        Sur notre distance de 20 km, nous avons comparé le modèle "série" simplifié (qui néglige la capacité) et le modèle "propagatif" exact. 
+                        Les tensions sont quasi identiques. Par contre, le modèle série surestime le courant injecté en début de ligne. En réalité, le modèle exact montre que le courant diminue au fil de la ligne parce qu'une partie "fuit" à travers le courant capacitif de charge du câble.
                     </aside>
                 </section>
                 <section>
@@ -763,13 +872,14 @@
                         <li>Courant capacitif important (>400 A) limite la longueur des liaisons souterraines.</li>
                     </ul>
                     <aside class="notes">
-                        [cite_start]Pour bien comprendre ce phénomène, nous avons simulé théoriquement une ligne de 1000 km[cite: 184]. 
-                        Ici, les effets capacitifs deviennent dominants. [cite_start]On observe ce qu'on appelle l'Effet Ferranti : la tension monte dramatiquement en bout de ligne[cite: 185].
-                        [cite_start]Mais surtout, le courant capacitif est gigantesque (plus de 400 Ampères)[cite: 186]. [cite_start]C'est pour cette raison physique que l'on ne peut pas tirer des câbles souterrains alternatifs sur des centaines de kilomètres sans équipement de compensation[cite: 244].
+                        Pour bien comprendre ce phénomène, nous avons simulé théoriquement une ligne de 1000 km. 
+                        Ici, les effets capacitifs deviennent dominants. On observe ce qu'on appelle l'Effet Ferranti : la tension monte dramatiquement en bout de ligne.
+                        Mais surtout, le courant capacitif est gigantesque (plus de 400 Ampères). C'est pour cette raison physique que l'on ne peut pas tirer des câbles souterrains alternatifs sur des centaines de kilomètres sans équipement de compensation.
                     </aside>
                 </section>
             </section>
 
+            <!-- ===================== SECTION 7 : RENDEMENT ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -791,9 +901,9 @@
                         </div>
                     </div>
                     <aside class="notes">
-                        [cite_start]Ce graphique montre la chute du rendement en fonction de la distance[cite: 221]. 
+                        Ce graphique montre la chute du rendement en fonction de la distance. 
                         Pour notre liaison de 20 km, le rendement est excellent, proche de 100%. 
-                        [cite_start]Mais plus la ligne est longue, plus la circulation de puissance réactive (liée au courant capacitif) engendre des pertes de transport supplémentaires, faisant chuter le rendement de façon linéaire[cite: 224, 242].
+                        Mais plus la ligne est longue, plus la circulation de puissance réactive (liée au courant capacitif) engendre des pertes de transport supplémentaires, faisant chuter le rendement de façon linéaire.
                     </aside>
                 </section>
                 <section>
@@ -808,11 +918,12 @@
                     </ul>
                     <p>Pour 20 km, pertes totales ~ quelques % ; pour 1000 km, elles deviennent rédhibitoires.</p>
                     <aside class="notes">
-                        D'où viennent ces pertes exactement ? [cite_start]Principalement de l'effet Joule dans l'âme conductrice (qui dépend de la température) [cite: 222][cite_start], et dans une moindre mesure, des pertes diélectriques dans l'isolant XLPE[cite: 223]. [cite_start]Le courant capacitif aggrave ces pertes Joule car il force un courant supplémentaire à traverser la ligne juste pour "charger" le câble[cite: 270, 271].
+                        D'où viennent ces pertes exactement ? Principalement de l'effet Joule dans l'âme conductrice (qui dépend de la température), et dans une moindre mesure, des pertes diélectriques dans l'isolant XLPE. Le courant capacitif aggrave ces pertes Joule car il force un courant supplémentaire à traverser la ligne juste pour "charger" le câble.
                     </aside>
                 </section>
             </section>
 
+            <!-- ===================== SECTION 8 : ÉCRANS ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -829,9 +940,9 @@
                     </div>
                     <p>Pour I=400 A, L=20 km, ω=314 rad/s, on obtient des tensions de plusieurs centaines de volts, dangereuses pour le personnel et l'isolant.</p>
                     <aside class="notes">
-                        Enfin, une problématique de sécurité majeure. [cite_start]L'écran de plomb du câble subit un couplage inductif avec l'âme centrale[cite: 248]. 
-                        [cite_start]Cela génère une tension induite V = j * omega * M * I[cite: 251, 252]. 
-                        Si on met cet écran à la terre d'un seul côté, sur une longueur de 20 km avec 400 Ampères, on se retrouve avec des centaines de volts à l'extrémité non raccordée. [cite_start]C'est extrêmement dangereux pour le personnel et l'isolant[cite: 253, 255, 256].
+                        Enfin, une problématique de sécurité majeure. L'écran de plomb du câble subit un couplage inductif avec l'âme centrale. 
+                        Cela génère une tension induite V = j × omega × M × I. 
+                        Si on met cet écran à la terre d'un seul côté, sur une longueur de 20 km avec 400 Ampères, on se retrouve avec des centaines de volts à l'extrémité non raccordée. C'est extrêmement dangereux pour le personnel et l'isolant.
                     </aside>
                 </section>
                 <section>
@@ -847,12 +958,13 @@
                     </ul>
                     <p>Le choix dépend de la longueur, du courant et des exigences de sécurité.</p>
                     <aside class="notes">
-                        Pour pallier ce problème, il y a deux grandes solutions. Soit on met à la terre aux DEUX extrémités. [cite_start]Ça annule la tension dangereuse, mais ça autorise le courant à circuler dans l'écran, ce qui chauffe le câble et crée des pertes Joule massives[cite: 260].
-                        [cite_start]Soit, pour une ligne de cette longueur, on utilise le "Cross-bonding"[cite: 261]. On croise les écrans des trois phases par sections successives. Les tensions induites s'annulent entre elles. [cite_start]C'est plus complexe à installer, mais ça supprime le danger et ça annule les pertes[cite: 261, 262].
+                        Pour pallier ce problème, il y a deux grandes solutions. Soit on met à la terre aux DEUX extrémités. Ça annule la tension dangereuse, mais ça autorise le courant à circuler dans l'écran, ce qui chauffe le câble et crée des pertes Joule massives.
+                        Soit, pour une ligne de cette longueur, on utilise le "Cross-bonding". On croise les écrans des trois phases par sections successives. Les tensions induites s'annulent entre elles. C'est plus complexe à installer, mais ça supprime le danger et ça annule les pertes.
                     </aside>
                 </section>
             </section>
 
+            <!-- ===================== SECTION 9 : CONCLUSION ===================== -->
             <section>
                 <section>
                     <div class="icon-header">
@@ -877,13 +989,14 @@
                         </div>
                     </div>
                     <aside class="notes">
-                        [cite_start]En conclusion, ce projet nous a permis de comprendre l'ensemble de la chaîne[cite: 265]. 
-                        [cite_start]Mécaniquement d'abord, nous avons validé que la STEP est un organe de flexibilité redoutable avec un rendement de cycle proche de 61%[cite: 267, 268]. 
-                        [cite_start]Électriquement ensuite, nous avons démontré que le transport souterrain sur une telle distance est fortement contraint par les effets capacitifs et par la gestion des écrans[cite: 270, 272].
+                        En conclusion, ce projet nous a permis de comprendre l'ensemble de la chaîne. 
+                        Mécaniquement d'abord, nous avons validé que la STEP est un organe de flexibilité redoutable avec un rendement de cycle proche de 61%. 
+                        Électriquement ensuite, nous avons démontré que le transport souterrain sur une telle distance est fortement contraint par les effets capacitifs et par la gestion des écrans.
                     </aside>
                 </section>
             </section>
 
+            <!-- ===================== MERCI ===================== -->
             <section>
                 <div class="thanks-slide">
                     <h1>Merci pour votre attention</h1>
@@ -899,6 +1012,7 @@
                     Nous vous remercions pour votre attention. Si vous avez des questions concernant nos calculs ou la modélisation sous Mathcad/Matlab, nous serons ravis d'y répondre !
                 </aside>
             </section>
+
         </div>
     </div>
 
@@ -916,7 +1030,7 @@
             width: 1920,
             height: 1080,
             margin: 0.1,
-            showNotes: false // Gardé à false, il suffit d'appuyer sur 's' pour la vue présentateur
+            showNotes: false // Appuyer sur 's' pour la vue présentateur
         });
     </script>
 </body>
